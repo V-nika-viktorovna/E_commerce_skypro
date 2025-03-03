@@ -34,3 +34,7 @@ def test_get_data_object_class_try(mock_get):
     result = get_data_object_class(FILE_DIR)
     assert result[0].name == 'Смартфончики :)))'
     assert result[1].name == 'Телевизоры - обзоры'
+
+
+def test_get_data_object_class_none():
+    assert get_data_object_class("") == []
