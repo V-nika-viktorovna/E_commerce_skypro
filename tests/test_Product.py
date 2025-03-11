@@ -59,3 +59,12 @@ def test_Product_new_product_classmethod_category(categoryes_fix):
          "quantity": 5}, category_test)
     assert new_product3.name == "Fly GS Ultra"
     assert new_product3.quantity == 10
+
+
+def test_Product_str(products_fix):
+    assert str(products_fix) == 'Fly GS Ultra; 18000.0 руб; Остаток: 10 шт.\n'
+
+
+def test_Product_add(products_fix):
+    pr1 = Product("Lay Ultra", "512GB, Серый цвет, 200MP камера", 20000.0, 5)
+    assert (products_fix+pr1) == 280000.0

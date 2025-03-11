@@ -10,6 +10,9 @@ class Product():
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f'{self.name}; {self.price} руб; Остаток: {self.quantity} шт.\n'
+
     @property
     def price(self):
         return self.__price
@@ -73,3 +76,13 @@ class Product():
                         }
             return cls(**result_product)
         return cls(**params)
+
+    def __add__(self, other):
+        """Выводит полную стоимость всех товаров на складе"""
+        return (self.quantity * self.__price) + (other.quantity * other.__price)
+
+
+if __name__ == '__main__':
+    pr1 = Product("Fly GS Ultra", "256GB, Серый цвет, 200MP камера", 18000.0, 10)
+    pr2 = Product("Fly GS Ultra", "256GB, Серый цвет, 200MP камера", 19000.0, 1)
+    print(pr1+pr2)
