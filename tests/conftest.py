@@ -11,6 +11,8 @@ def products_fix():
 
 @pytest.fixture
 def categoryes_fix():
+    product1 = Product("Fly GS Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     return Category("Смартфоны",
                     "Смартфоны, как средство коммуникации",
-                    ["Fly GS Ultra", "Iphone 15"])
+                    [product1, product2])
