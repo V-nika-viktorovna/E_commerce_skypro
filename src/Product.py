@@ -10,6 +10,9 @@ class Product():
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f'{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n'
+
     @property
     def price(self):
         return self.__price
@@ -40,19 +43,22 @@ class Product():
 
         if category:
 
-            list = category.products.split('\n')
+            list_product = category.products.split('\n')
+
             result = []
-            for str_list in list:
-                list_str = str_list.split('; ')
-                if len(list_str) > 1:
-                    dict_result = {
-                        'name': list_str[0],
-                        'price': list_str[1].split(' ')[0],
-                        'quantity': list_str[2].split(' ')[1]
-                    }
-                    result.append(dict_result)
-                else:
-                    break
+            del list_product[-1]
+            for str_list in list_product:
+                list_str = str_list.split(', ')
+                list_str_1 = list_str.pop(1)
+                list_str_app = list_str_1.split('. ')
+                for i in list_str_app:
+                    list_str.append(i)
+                dict_result = {
+                    'name': list_str[0],
+                    'price': list_str[1].split(' ')[0],
+                    'quantity': list_str[2].split(' ')[1]
+                }
+                result.append(dict_result)
 
             for product in result:
                 if params.get('name') == product.get('name'):
@@ -73,3 +79,14 @@ class Product():
                         }
             return cls(**result_product)
         return cls(**params)
+
+    def __add__(self, other):
+        """Выводит полную стоимость всех товаров на складе"""
+        return (self.quantity * self.__price) + (other.quantity * other.__price)
+
+
+if __name__ == '__main__':
+    pr1 = Product("Fly GS Ultra", "256GB, Серый цвет, 200MP камера", 18000.0, 10)
+    pr2 = Product("Fly GS Ultra", "256GB, Серый цвет, 200MP камера", 19000.0, 1)
+    # print(pr1+pr2)
+    print(pr1)
