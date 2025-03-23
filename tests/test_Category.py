@@ -37,3 +37,8 @@ def test_IterCategory_try(categoryes_fix):
 
     with pytest.raises(StopIteration):
         next(iter1)
+
+
+def test_add_product_try_error(categoryes_fix):
+    with pytest.raises(TypeError):
+        categoryes_fix.add_product("jhgjhhghgh")

@@ -82,6 +82,7 @@ class Product():
 
     def __add__(self, other):
         """Выводит полную стоимость всех товаров на складе"""
+
         return (self.quantity * self.__price) + (other.quantity * other.__price)
 
 
