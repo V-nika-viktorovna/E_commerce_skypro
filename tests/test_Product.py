@@ -41,7 +41,7 @@ def test_Product_price_setter_try_zero(capsys):
          quantity=5)
     new_product.price = -800
     captured = capsys.readouterr()
-    assert captured.out == 'Цена не должна быть нулевая или отрицательная\n'
+    assert captured.out.split('\n')[-2] == 'Цена не должна быть нулевая или отрицательная'
     assert new_product.price == 180000.0
 
 
