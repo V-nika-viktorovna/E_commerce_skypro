@@ -1,6 +1,9 @@
 import unittest.mock
 from unittest.mock import patch
 
+import pytest
+
+from src.My_Exceptions import MyExceptions
 from src.Product import Product
 
 
@@ -69,3 +72,8 @@ def test_Product_str(products_fix):
 def test_Product_add(products_fix):
     pr1 = Product("Lay Ultra", "512GB, Серый цвет, 200MP камера", 20000.0, 5)
     assert (products_fix+pr1) == 280000.0
+
+
+def test_Product_init_zero(categoryes_fix):
+    with pytest.raises(MyExceptions):
+        Product("Iphone 15", "512GB, Gray space", 210000.0, 0)

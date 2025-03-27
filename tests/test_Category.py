@@ -42,3 +42,19 @@ def test_IterCategory_try(categoryes_fix):
 def test_add_product_try_error(categoryes_fix):
     with pytest.raises(TypeError):
         categoryes_fix.add_product("jhgjhhghgh")
+
+
+def test_Category_middle_price_try(categoryes_fix):
+    assert categoryes_fix.middle_price() == 30000
+
+
+# def test_Category_middle_price_zero(categoryes_fix):
+#     product1 = Product("Iphone 16", "512GB, Gray space", 230000.0, 1)
+#     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 0)
+#     Category("Смартфоны", "Смартфоны, как средство коммуникации",
+#              [product1, product2])
+#     assert categoryes_fix.middle_price() == 0
+
+def test_Category_middle_price_zero():
+    result = Category("Пустая категория", "Категория без продуктов", [])
+    assert result.middle_price() == 0

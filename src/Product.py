@@ -1,5 +1,6 @@
 from src.Base_Product import BaseProduct
 from src.Mixin_Print import MixinPrint
+from src.My_Exceptions import MyExceptions
 
 
 class Product(BaseProduct, MixinPrint):
@@ -9,11 +10,15 @@ class Product(BaseProduct, MixinPrint):
     quantity: int
 
     def __init__(self, name, description, price, quantity):
-        self.name = name
-        self.description = description
-        self.__price = price
-        self.quantity = quantity
-        super().__init__()
+
+        if quantity <= 0:
+            raise MyExceptions()
+        else:
+            self.name = name
+            self.description = description
+            self.__price = price
+            self.quantity = quantity
+            super().__init__()
 
     def __str__(self):
         return f'{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n'
@@ -30,7 +35,7 @@ class Product(BaseProduct, MixinPrint):
         else:
             if new_price < self.__price:
                 while True:
-                    confirmation = input(f'\n\
+                    confirmation = input('\n\
     Вы действительно хотите установить цену ниже?\n\
     Если да, то введите "y", если нет, то введите "n"\n')
                     if confirmation == 'y':
